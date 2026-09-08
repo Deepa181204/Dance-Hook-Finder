@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "HookStep AI"
+description = "An AI-powered dance analysis app that lets users upload or record a dance clip, detects a signature hook step from pose motion, matches it to a curated song dataset, and retrieves a relevant YouTube video for playback."
+version = "1.0.0"
+id = "artifacts/dance-hook-ai"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19003
+
+[services.development]
+run = "pnpm --filter @workspace/dance-hook-ai run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/dance-hook-ai", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/dance-hook-ai/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19003"
+BASE_PATH = "/"

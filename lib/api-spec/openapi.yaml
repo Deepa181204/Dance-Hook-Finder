@@ -10,6 +10,10 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: hook-steps
+    description: Curated dance-step matches
+  - name: youtube
+    description: YouTube song video discovery
 paths:
   /healthz:
     get:
@@ -24,6 +28,63 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /hook-steps:
+    get:
+      operationId: listHookSteps
+      tags: [hook-steps]
+      summary: List curated hook steps
+      description: Returns the initial known dance-step dataset used for matching.
+      responses:
+        "200":
+          description: Curated hook steps
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/HookStep"
+  /youtube/search:
+    get:
+      operationId: searchYouTube
+      tags: [youtube]
+      summary: Search YouTube for an identified song
+      description: Searches YouTube and ranks candidate videos toward official and high-relevance results.
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 1
+        - name: artist
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: hookStep
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Ranked YouTube result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/YouTubeSearchResult"
+        "400":
+          description: Missing search query
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "502":
+          description: YouTube service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +94,87 @@ components:
           type: string
       required:
         - status
+    HookStep:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        song:
+          type: string
+        artist:
+          type: string
+        movieOrAlbum:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        description:
+          type: string
+        popularity:
+          type: integer
+        sampleThumbnail:
+          type: string
+      required:
+        - id
+        - name
+        - song
+        - artist
+        - movieOrAlbum
+        - tags
+        - description
+        - popularity
+        - sampleThumbnail
+    YouTubeVideo:
+      type: object
+      properties:
+        videoId:
+          type: string
+        title:
+          type: string
+        channelTitle:
+          type: string
+        thumbnailUrl:
+          type: string
+        publishedAt:
+          type: string
+        viewCount:
+          type: integer
+        relevanceScore:
+          type: number
+      required:
+        - videoId
+        - title
+        - channelTitle
+        - thumbnailUrl
+        - publishedAt
+        - viewCount
+        - relevanceScore
+    YouTubeSearchResult:
+      type: object
+      properties:
+        query:
+          type: string
+        source:
+          type: string
+        selected:
+          $ref: "#/components/schemas/YouTubeVideo"
+        candidates:
+          type: array
+          items:
+            $ref: "#/components/schemas/YouTubeVideo"
+      required:
+        - query
+        - source
+        - selected
+        - candidates
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
 

@@ -1,6 +1,6 @@
-# [Project name]
+# HookStep AI
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+HookStep AI analyzes a dance clip with browser pose estimation, matches the movement to a curated hook-step dataset, and finds a playable YouTube song result.
 
 ## Run & Operate
 
@@ -22,23 +22,31 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/dance-hook-ai` — the user-facing React/Vite analysis studio and hook-step library.
+- `artifacts/api-server/src/routes/hook-steps.ts` — curated movement classes and song associations.
+- `artifacts/api-server/src/routes/youtube.ts` — YouTube Data API search and relevance ranking.
+- `lib/api-spec/openapi.yaml` — source of truth for the generated API hooks and schemas.
+- `artifacts/dance-hook-ai/src/lib/pose-analysis.ts` — browser MediaPipe pose sampling and motion signature ranking.
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- The first classifier is intentionally curated: pose motion is ranked against known hook-step classes instead of pretending to identify arbitrary songs.
+- Video bytes stay in the browser for this first version; only the selected song query reaches the API server.
+- YouTube credentials are accessed through the Replit-managed connector, and the browser receives only ranked public video metadata.
+- Pose estimation runs on sampled frames and reports tracked-frame confidence before searching YouTube.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+Users can upload a video, record from a camera, or load a demo clip; inspect the movement pipeline, review a hook-step/song match, browse the curated signal bank, and play a ranked YouTube result in an embedded player.
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+The product should remain AI-first and transparent about the curated dataset and confidence score.
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- Real clip analysis needs a modern browser, a decodable video, and the dancer fully in frame so MediaPipe can track enough landmarks.
+- YouTube search is subject to the connected account's API quota and YouTube embed availability.
 
 ## Pointers
 
