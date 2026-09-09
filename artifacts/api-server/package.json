@@ -4,11 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "export NODE_ENV=development && pnpm run build && pnpm run start",
-    "build": "node ./build.mjs",
-    "start": "node --enable-source-maps ./dist/index.mjs",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
-  },
+  "dev": "export NODE_ENV=development && pnpm run build:local && pnpm run start",
+  "build:local": "node ./build.mjs",
+  "start": "node --enable-source-maps ./dist/index.mjs",
+  "typecheck": "tsc -p tsconfig.json --noEmit"
+},
   "dependencies": {
     "@replit/connectors-sdk": "^0.4.1",
     "@workspace/api-zod": "workspace:*",
