@@ -229,6 +229,9 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
     devDependencies:
+      '@esbuild/win32-x64':
+        specifier: 0.27.3
+        version: 0.27.3
       '@hookform/resolvers':
         specifier: ^3.10.0
         version: 3.10.0(react-hook-form@7.84.0(react@19.1.0))
@@ -322,6 +325,12 @@ importers:
       '@replit/vite-plugin-runtime-error-modal':
         specifier: 'catalog:'
         version: 0.0.6
+      '@rollup/rollup-win32-x64-msvc':
+        specifier: 4.62.4
+        version: 4.62.4
+      '@tailwindcss/oxide-win32-x64-msvc':
+        specifier: 4.3.3
+        version: 4.3.3
       '@tailwindcss/typography':
         specifier: ^0.5.15
         version: 0.5.20(tailwindcss@4.3.3)
@@ -367,6 +376,9 @@ importers:
       input-otp:
         specifier: ^1.4.2
         version: 1.4.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      lightningcss-win32-x64-msvc:
+        specifier: 1.32.0
+        version: 1.32.0
       lucide-react:
         specifier: 'catalog:'
         version: 0.545.0(react@19.1.0)
@@ -759,6 +771,12 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [linux]
+
+  '@esbuild/win32-x64@0.27.3':
+    resolution: {integrity: sha512-4uJGhsxuptu3OcpVAzli+/gWusVGwZZHTlS63hh++ehExkVT8SgiEf7/uC/PclrPPkLhZqGgCTjd0VWLo6xMqA==}
+    engines: {node: '>=18'}
+    cpu: [x64]
+    os: [win32]
 
   '@floating-ui/core@1.8.0':
     resolution: {integrity: sha512-0CIZ5itps/8x7BG8dEIhs53BvCUH2PCoogtakwRTut+Arm58sJooJ0AuZhLw2HJYIR5cMLNPBSS728sPho2khQ==}
@@ -1507,6 +1525,11 @@ packages:
     os: [linux]
     libc: [glibc]
 
+  '@rollup/rollup-win32-x64-msvc@4.62.4':
+    resolution: {integrity: sha512-zD6NdeWEByGE9QF9vCrlJ5YQB4oq9q91kPZS37Jwj5hOkvR1lTBSpsKhKDw4IJtbQ35LsTS1HD9DZYGKIshU1Q==}
+    cpu: [x64]
+    os: [win32]
+
   '@scalar/helpers@0.9.2':
     resolution: {integrity: sha512-hjyMpMZjTBZQhyByZmz5oUgRKUQJO5V5AOiJxsVEGbUmgA7sJRQeTrXLB+BEwzaKS5nm2opJeNyMBYLFNK4hiQ==}
     engines: {node: '>=22'}
@@ -1578,6 +1601,12 @@ packages:
       - '@tybys/wasm-util'
       - '@emnapi/wasi-threads'
       - tslib
+
+  '@tailwindcss/oxide-win32-x64-msvc@4.3.3':
+    resolution: {integrity: sha512-yJ0pwIVc/nYeGoV02WtsN8KYyLQv7kyI2wDnkezyJlGGjkd4QLwDGAwl47YpPJeuI0M0ObaXGSPjvWDPeTPggw==}
+    engines: {node: '>= 20'}
+    cpu: [x64]
+    os: [win32]
 
   '@tailwindcss/oxide@4.3.3':
     resolution: {integrity: sha512-krXjAikiaFSPaK/FkAQT5UTx3VormQaiZ5hBFlJZ9UFQGB/rwg1MZIhHAG9smMQRTdyJxP6Qt5MwMtdyU5FWrA==}
@@ -2369,6 +2398,12 @@ packages:
     cpu: [x64]
     os: [linux]
     libc: [glibc]
+
+  lightningcss-win32-x64-msvc@1.32.0:
+    resolution: {integrity: sha512-Amq9B/SoZYdDi1kFrojnoqPLxYhQ4Wo5XiL8EVJrVsB8ARoC1PWW6VGtT0WKCemjy8aC+louJnjS7U18x3b06Q==}
+    engines: {node: '>= 12.0.0'}
+    cpu: [x64]
+    os: [win32]
 
   lightningcss@1.32.0:
     resolution: {integrity: sha512-NXYBzinNrblfraPGyrbPoD19C1h9lfI/1mzgWYvXUTe414Gz/X1FD2XBZSZM7rRTrMA8JL3OtAaGifrIKhQ5yQ==}
@@ -3237,6 +3272,8 @@ snapshots:
 
   '@esbuild/linux-x64@0.27.3':
     optional: true
+
+  '@esbuild/win32-x64@0.27.3': {}
 
   '@floating-ui/core@1.8.0':
     dependencies:
@@ -4112,6 +4149,8 @@ snapshots:
   '@rollup/rollup-linux-x64-gnu@4.62.4':
     optional: true
 
+  '@rollup/rollup-win32-x64-msvc@4.62.4': {}
+
   '@scalar/helpers@0.9.2': {}
 
   '@scalar/json-magic@0.12.19':
@@ -4182,6 +4221,8 @@ snapshots:
 
   '@tailwindcss/oxide-wasm32-wasi@4.3.3':
     optional: true
+
+  '@tailwindcss/oxide-win32-x64-msvc@4.3.3': {}
 
   '@tailwindcss/oxide@4.3.3':
     optionalDependencies:
@@ -4866,6 +4907,8 @@ snapshots:
 
   lightningcss-linux-x64-gnu@1.32.0:
     optional: true
+
+  lightningcss-win32-x64-msvc@1.32.0: {}
 
   lightningcss@1.32.0:
     dependencies:
